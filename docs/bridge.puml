@@ -1,0 +1,45 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+abstract class Shape <<Abstraction>> {
+  - renderer : Renderer
+  + setRenderer(renderer : Renderer) : void
+  # renderer() : Renderer
+  + {abstract} draw() : void
+}
+class Circle <<Refined Abstraction>> {
+  - centerX : int
+  - centerY : int
+  - radius : int
+  + draw() : void
+}
+class Square <<Refined Abstraction>> {
+  - x : int
+  - y : int
+  - side : int
+  + draw() : void
+}
+interface Renderer <<Implementor>> {
+  + drawCircle(centerX : int, centerY : int, radius : int) : void
+  + drawSquare(x : int, y : int, side : int) : void
+}
+class VectorRenderer <<Concrete Implementor>>
+class RasterRenderer <<Concrete Implementor>>
+class BridgeDemo <<Client>>
+Shape <|-- Circle
+Shape <|-- Square
+Renderer <|.. VectorRenderer
+Renderer <|.. RasterRenderer
+Shape "0..*" o--> "1" Renderer : bridge through composition
+BridgeDemo ..> Shape : uses and switches
+BridgeDemo ..> VectorRenderer : creates
+BridgeDemo ..> RasterRenderer : creates
+note bottom of Renderer
+  RenderTarget is a shared output helper.
+  draw methods may throw IOException.
+end note
+note bottom of Shape
+  Shared aggregation denotes injected renderers.
+  Composition in Bridge means delegation via a field.
+end note
+@enduml

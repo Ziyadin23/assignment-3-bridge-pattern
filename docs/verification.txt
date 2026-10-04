@@ -1,0 +1,26 @@
+Verification date: 4 October 2026
+Environment: Linux, Eclipse Temurin OpenJDK 17.0.20.1+1
+
+Commands executed from the repository root with JAVA_HOME pointing to JDK 17:
+  ./test.sh
+  ./run.sh
+
+Compilation: PASSED
+  javac --release 17 -encoding UTF-8 -Xlint:all -Werror
+
+Behavioral checks: PASSED all 7 test groups
+  1. Exact geometry delegation to an independent RecordingRenderer
+  2. Replacement and switching back on existing Circle and Square objects
+  3. Invalid dimensions, null injection and preservation after rejected replacement
+  4. SVG XML and circle/square geometry
+  5. PNG decoding, dimensions, colors and distinct circle/square geometry
+  6. Observable IOException when an output directory is blocked by a regular file
+  7. Complete demo output for all four shape and renderer combinations
+
+Demo: PASSED
+  Produced vector/circle.svg, vector/square.svg,
+  raster/circle.png and raster/square.png.
+
+Report: PASSED visual review of all 5 rendered pages.
+  Includes both hierarchies, bridge reference, six annotated Clean Code principles,
+  runtime switching explanation, trade-offs and the public repository link.

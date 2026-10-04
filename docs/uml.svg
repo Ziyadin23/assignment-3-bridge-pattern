@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="950" viewBox="0 0 1400 950">
+<rect width="1400" height="950" fill="white"/>
+<defs>
+<marker id="triangle" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L16 9 L1 17 Z" fill="white" stroke="#111" stroke-width="2"/></marker>
+<marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1 L10 6 L1 11" fill="none" stroke="#111" stroke-width="2"/></marker>
+</defs>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif;fill:#111}.name{font-size:24px;font-weight:bold}.role{font-size:20px}.code{font-size:19px;font-family:DejaVu Sans Mono,monospace}.note{font-size:20px}</style>
+<text x="700" y="40" text-anchor="middle" font-size="30" font-weight="bold">Shape and Renderer Bridge</text>
+<rect x="480" y="80" width="440" height="140" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="700.0" y="108" class="role" text-anchor="middle">Client</text>
+<text x="700.0" y="139" class="name" text-anchor="middle">BridgeDemo</text>
+<path d="M480 154 H920" stroke="#111"/>
+<text x="496" y="183" class="code">+ main(args) : void</text>
+<text x="496" y="211" class="code">creates and switches objects</text>
+<rect x="55" y="340" width="505" height="215" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="307.5" y="368" class="role" text-anchor="middle">Abstraction abstract class</text>
+<text x="307.5" y="399" class="name" text-anchor="middle">Shape</text>
+<path d="M55 414 H560" stroke="#111"/>
+<text x="71" y="443" class="code">- renderer : Renderer</text>
+<text x="71" y="471" class="code">+ setRenderer(renderer) : void</text>
+<text x="71" y="499" class="code"># renderer() : Renderer</text>
+<text x="71" y="527" class="code">+ draw() : void {abstract}</text>
+<rect x="810" y="340" width="535" height="215" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="1077.5" y="368" class="role" text-anchor="middle">Implementor interface</text>
+<text x="1077.5" y="399" class="name" text-anchor="middle">Renderer</text>
+<path d="M810 414 H1345" stroke="#111"/>
+<text x="826" y="443" class="code">+ drawCircle(cx, cy, r) : void</text>
+<text x="826" y="471" class="code">+ drawSquare(x, y, side) : void</text>
+<text x="826" y="499" class="code">draw operations may throw</text>
+<text x="826" y="527" class="code">IOException</text>
+<rect x="35" y="680" width="290" height="190" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="180.0" y="708" class="role" text-anchor="middle">Refined Abstraction</text>
+<text x="180.0" y="739" class="name" text-anchor="middle">Circle</text>
+<path d="M35 754 H325" stroke="#111"/>
+<text x="51" y="783" class="code">- centerX, centerY</text>
+<text x="51" y="811" class="code">- radius : int</text>
+<text x="51" y="839" class="code">+ draw() : void</text>
+<rect x="365" y="680" width="290" height="190" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="510.0" y="708" class="role" text-anchor="middle">Refined Abstraction</text>
+<text x="510.0" y="739" class="name" text-anchor="middle">Square</text>
+<path d="M365 754 H655" stroke="#111"/>
+<text x="381" y="783" class="code">- x, y : int</text>
+<text x="381" y="811" class="code">- side : int</text>
+<text x="381" y="839" class="code">+ draw() : void</text>
+<rect x="745" y="680" width="300" height="190" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="895.0" y="708" class="role" text-anchor="middle">Concrete Implementor</text>
+<text x="895.0" y="739" class="name" text-anchor="middle">VectorRenderer</text>
+<path d="M745 754 H1045" stroke="#111"/>
+<text x="761" y="783" class="code">SVG serialization</text>
+<text x="761" y="811" class="code">+ drawCircle(...)</text>
+<text x="761" y="839" class="code">+ drawSquare(...)</text>
+<rect x="1080" y="680" width="300" height="190" fill="#f8fafc" stroke="#111" stroke-width="2"/>
+<text x="1230.0" y="708" class="role" text-anchor="middle">Concrete Implementor</text>
+<text x="1230.0" y="739" class="name" text-anchor="middle">RasterRenderer</text>
+<path d="M1080 754 H1380" stroke="#111"/>
+<text x="1096" y="783" class="code">PNG pixel painting</text>
+<text x="1096" y="811" class="code">+ drawCircle(...)</text>
+<text x="1096" y="839" class="code">+ drawSquare(...)</text>
+<path d="M550 220 L310 340" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="9 7"/>
+<path d="M850 220 L1090 340" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arrow)" stroke-dasharray="9 7"/>
+<text x="180" y="280" class="note">uses and switches</text><text x="1000" y="265" class="note">selects implementations</text>
+<path d="M560 440 L578 430 L596 440 L578 450 Z" fill="white" stroke="#111" stroke-width="2.5"/>
+<path d="M596 440 L810 440" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#arrow)"/>
+<text x="685" y="396" text-anchor="middle" class="note">bridge</text><text x="685" y="421" text-anchor="middle" class="note">composition reference</text><text x="582" y="478" class="note">0..*</text><text x="785" y="478" class="note">1</text>
+<path d="M180 680 L180 620 L305 620 L305 555" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#triangle)"/>
+<path d="M510 680 L510 620 L305 620 L305 555" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#triangle)"/>
+<path d="M895 680 L895 615 L1078 615 L1078 555" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#triangle)" stroke-dasharray="9 7"/>
+<path d="M1230 680 L1230 615 L1078 615 L1078 555" fill="none" stroke="#111" stroke-width="2.5" marker-end="url(#triangle)" stroke-dasharray="9 7"/>
+<text x="700" y="916" text-anchor="middle" class="note">Hollow diamond indicates sharing of injected renderers rather than exclusive lifetime ownership.</text>
+</svg>
