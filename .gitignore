@@ -1,0 +1,4 @@
+build/
+rendered/
+.idea/
+*.iml
